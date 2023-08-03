@@ -23,14 +23,17 @@ while True:
     
     ip = input(colorama.Fore.RED + 'Enter IP Address: ')
     print(colorama.Fore.WHITE + '='*20)
+    try:
 
-    req = requests.get('https://internetdb.shodan.io/{}'.format(ip))
-    res = json.loads(req.text)
-    for i in res.items():
-        key = i[0]
-        val = str(i[1])
-        val = val.strip('[]')
-        print(f'{key} : {val}\n')
+        req = requests.get('https://internetdb.shodan.io/{}'.format(ip))
+        res = json.loads(req.text)
+        for i in res.items():
+            key = i[0]
+            val = str(i[1])
+            val = val.strip('[]')
+            print(f'{key} : {val}\n')
+    except BaseException as e:
+        print(e)
     print('='*20)
 
 
